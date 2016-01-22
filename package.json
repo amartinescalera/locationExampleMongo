@@ -1,0 +1,41 @@
+{
+	"name": "locationTubeServices",
+	"version": "0.0.1",
+	"description": "Small database for getting nearest place from your location",
+	"main": "server.js",
+	"scripts": {
+		"code-style": "jscs -p google bin/ lib/ resources/ test/",
+		"coverage": "lab -r html -o coverage/index.html | open coverage/index.html",
+		"jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
+		"start": "nodemon server.js",
+		"test": "lab -l"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/antoniomeh/locationExampleMongo"
+	},
+	"author": "antoniomeh",
+	"license": "AML",
+	"homepage": "https://github.com/antoniomeh/locationExampleMongo",
+	"dependencies": {
+		"bell": "6.1.0",
+		"ejs": "2.3.4",
+		"fs-extra": "0.26.4",
+		"hapi": "12.1.0",
+		"kerberos": "0.0.18",
+		"joi": "7.0.1",
+		"mongodb": "2.1.4",
+		"underscore": "1.8.3"
+	},
+	"devDependencies": {
+		"lab": "~5.0.1",
+		"jscs": "^2.7.0",
+		"jshint": "^2.9.1-rc1",
+		"mocha": "~2.0"
+	},
+	"pre-commit": [
+		"code-style",
+		"jshint",
+		"test"
+	]
+}

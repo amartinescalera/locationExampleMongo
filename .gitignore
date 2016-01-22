@@ -1,0 +1,41 @@
+# Created by antoniomeh
+node_modules
+dist
+.tmp
+.tmpAngularWidgets
+.log
+.sass-cache
+.idea/
+.coverage
+.tmpsearchbar
+.DS_Store
+app/bower_components
+app/styles/main.css
+phantomjsdriver.log
+app/index.html
+
+# Do not commit the coverage reports
+coverage
+
+# Do not checkin complexity reports
+complexity
+
+# Do not add output from mock logs
+access_logs.db
+
+# Do not add style guide reports to version control
+jscs
+
+# Do not save the configuration service as it is dynamcially built at runtime
+app/scripts/services/sitewide/configuration.js
+.idea/.name
+.idea/encodings.xml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/web-ui.iml
+.idea/workspace.xml
+npm-debug.log
+karma_html/
