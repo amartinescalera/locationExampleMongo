@@ -638,4 +638,6 @@ db.tube.insert({ "loc" : { "type": "Point", "coordinates": [51.6178684221,-0.185
 db.tube.insert({ "loc" : { "type": "Point", "coordinates": [51.4899071075,0.0692083076] },"name": "Woolwich Arsenal","zone": "4","postcode": "SE18 6HX"})
 db.tube.insert({ "loc" : { "type": "Point", "coordinates": [51.4911077876,0.0546267499] },"name": "Woolwich Dockyard","zone": "3","postcode": "SE18 5JY"})
 db.tube.insert({ "loc" : { "type": "Point", "coordinates": [51.3811045169,-0.2455609248] },"name": "Worcester Park","zone": "4","postcode": "KT4 7ND"})
-db.tube.createIndex( { loc : "2dsphere" , category : -1, name: 1 } )
+db.tube.createIndex( { loc : "2dsphere" , category : -1, name: 1 } );
+
+//51.517611, -0.097775

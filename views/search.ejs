@@ -15,8 +15,8 @@
     <h2><%= search %></h2>
 
 		<form action="/search" method="post">
-			Longitude <input type="text" name="long" title="longitude" size="5" value="51.517892"/>
-			Latitude <input type="text" name="lati" title="latitude" size="5" value="-0.098113"/>
+			Longitude <input type="text" name="long" title="longitude" size="5" value="<%= longitude %>"/>
+			Latitude <input type="text" name="lati" title="latitude" size="5" value="<%= latitude %>"/>
     	<input class="btn btn-primary fa fa-facebook" type="submit" value="Search"/>
 		</form>
 
@@ -24,7 +24,7 @@
 
 		<ul style="list-style-type: none;">
 			<% for(var i=0; i<tubes.length; i++) {%>
-			<li><%= tubes[i].name %> - Postcode: <%= tubes[i].postcode %> - Zone: <%= tubes[i].zone %></li>
+			<li><%= tubes[i].name %> - Postcode: <%= tubes[i].postcode %> - Zone: <%= tubes[i].zone%>  - Distance: <%= tubes[i].distance%></li>
 			<% } %>
 		</ul>
 

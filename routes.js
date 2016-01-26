@@ -1,6 +1,7 @@
 'use strict';
-const ejs 	= require('ejs');
-const fs 		= require('fs-extra');
+const ejs 		= require('ejs');
+const fs 			= require('fs-extra');
+const geolib	= require('geolib');
 
 module.exports = function(server, db) {
 	let empty = {};
@@ -20,7 +21,13 @@ module.exports = function(server, db) {
 			config: {
 				handler: function (request, reply) {
 					var compiled = ejs.compile(fs.readFileSync(__dirname + '/views/search.ejs', 'utf8'),empty);
-					var html = compiled({search : 'Search nearset Tube Station', errores: '', tubes: ''});
+					var html = compiled({
+						search : 'Search nearset Tube Station',
+						errores: '',
+						tubes: '',
+						longitude: '',
+						latitude: ''
+					});
 					reply(html);
 				}
 			}
@@ -40,7 +47,7 @@ module.exports = function(server, db) {
 									type: "Point" ,
 									coordinates: [ longitude, latitude ]
 								},
-								$maxDistance: 1000,
+								$maxDistance: 2000,
 								$minDistance: 0
 							}
 						}
@@ -55,12 +62,22 @@ module.exports = function(server, db) {
 								let tb = {
 									name: tube[i].name,
 									postcode: tube[i].postcode,
-									zone: tube[i].zone
+									zone: tube[i].zone,
+									distance: geolib.getDistance(
+										{latitude: latitude, longitude: longitude},
+										{latitude: tube[i].loc.coordinates[1], longitude: tube[i].loc.coordinates[0]}
+									)
 								};
 								tubes.push(tb);
 							}
 						}
-						let html = compiled({search : 'Search nearset Tube Station', errores: errs.message, tubes:  tubes});
+						let html = compiled({
+									search : 'Search nearset Tube Station',
+									errores: errs.message,
+									tubes:  tubes,
+									longitude: longitude,
+									latitude: latitude
+						});
 						reply(html);
 					});
 				}
