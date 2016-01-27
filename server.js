@@ -22,13 +22,11 @@ server.register(bell, (err) => {
 	}
 
 	server.auth.strategy('facebook', 'bell', {
-		provider: {
-			auth: 'http://localhost:3000/auth',
-			token: 'http://localhost:3000/token'
-		},
-		password: 'cookie_encryption_password',
-		clientId: '679382918863071',
-		clientSecret: 'beed24cb3bb2ef982f905c25c4a67785',
+		provider: 'facebook',
+		password: 'password',
+		clientId: 'XXXXXXXX',
+		clientSecret: 'YYYYYYYYYYYYYYYYYYYY',
+		location: 'http://localhost:3000',
 		isSecure: false     // Terrible idea but required if not using HTTPS especially if developing locally
 	});
 

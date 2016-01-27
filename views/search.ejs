@@ -14,9 +14,17 @@
   <div class="jumbotron text-center">
     <h2><%= search %></h2>
 
+		<h3>Facebook Authentication</h3>
+		<h4><b>Id:</b> <%= id %></h4>
+		<h4><b>Name:</b> <%= displayName %></h4>
+		<h4><b>Email:</b> <%= email %></h4>
+
 		<form action="/search" method="post">
 			Longitude <input type="text" name="long" title="longitude" size="5" value="<%= longitude %>"/>
 			Latitude <input type="text" name="lati" title="latitude" size="5" value="<%= latitude %>"/>
+			<input type="hidden" name="displayName" title="latitude" size="5" value="<%= displayName %>"/>
+			<input type="hidden" name="email" title="email" size="5" value="<%= email %>"/>
+			<input type="hidden" name="id" title="id" size="5" value="<%= id %>"/>
     	<input class="btn btn-primary fa fa-facebook" type="submit" value="Search"/>
 		</form>
 

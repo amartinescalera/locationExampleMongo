@@ -16,19 +16,30 @@ module.exports = function(server, db) {
 			}
 		},
 		{
-			method: 'GET', // Must handle both GET and POST
-			path: '/search',          // The callback endpoint registered with the provider
+			method: 'GET',
+			path: '/auth',
 			config: {
+				auth: {
+					strategy: 'facebook',
+					mode: 'try'
+				},
 				handler: function (request, reply) {
-					var compiled = ejs.compile(fs.readFileSync(__dirname + '/views/search.ejs', 'utf8'),empty);
-					var html = compiled({
-						search : 'Search nearset Tube Station',
-						errores: '',
-						tubes: '',
-						longitude: '',
-						latitude: ''
-					});
-					reply(html);
+					if (!request.auth.isAuthenticated) {
+						reply('Authentication failed due to: ' + request.auth.error.message);
+					} else {
+						var compiled = ejs.compile(fs.readFileSync(__dirname + '/views/search.ejs', 'utf8'), empty);
+						var html = compiled({
+							search: 'Search nearset Tube Station',
+							displayName: request.auth.credentials.profile.displayName,
+							email: request.auth.credentials.profile.email,
+							id: request.auth.credentials.profile.id,
+							errores: '',
+							tubes: '',
+							longitude: '',
+							latitude: ''
+						});
+						reply(html);
+					}
 				}
 			}
 		},
@@ -73,6 +84,9 @@ module.exports = function(server, db) {
 						}
 						let html = compiled({
 									search : 'Search nearset Tube Station',
+									displayName: request.payload.displayName,
+									email: request.payload.email,
+									id: request.payload.id,
 									errores: errs.message,
 									tubes:  tubes,
 									longitude: longitude,
